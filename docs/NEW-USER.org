@@ -2,7 +2,7 @@
 #+AUTHOR: Yashwanth Prasannakumar (yvnth)
 #+OPTIONS: toc:nil
 
-** 1. Add User to System Config
+* 1. Add User to System Config
 
 Add the user to =hosts/<hostname>/configuration.nix=:
 
@@ -18,7 +18,7 @@ users.users.<username> = {
 };
 #+end_src
 
-** 2. Create Home Config
+* 2. Create Home Config
 
 Create =hosts/<hostname>/home.nix= for the user, using =hosts/satella/home.nix= as a reference:
 
@@ -30,7 +30,6 @@ Create =hosts/<hostname>/home.nix= for the user, using =hosts/satella/home.nix= 
   home = {
     username = "<username>";
     homeDirectory = "/home/<username>";
-    stateVersion = "25.11";
   };
 
   homeModules = {
@@ -39,7 +38,7 @@ Create =hosts/<hostname>/home.nix= for the user, using =hosts/satella/home.nix= 
 }
 #+end_src
 
-** 3. Add to Home Manager in Flake
+* 3. Add to Home Manager in Flake
 
 Add the user under =home-manager.users= in =flake.nix=:
 
@@ -51,13 +50,13 @@ home-manager.users.<username> = {
 };
 #+end_src
 
-** 4. Create Secrets Directory
+* 4. Create Secrets Directory
 
 #+begin_src bash
 mkdir -p secrets/<hostname>/<username>
 #+end_src
 
-** 5. Add Secrets
+* 5. Add Secrets
 
 Add secrets if needed:
 
@@ -77,7 +76,7 @@ sops.secrets.<name> = {
 };
 #+end_src
 
-** 6. Build and Switch
+* 6. Build and Switch
 
 #+begin_src bash
 sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>

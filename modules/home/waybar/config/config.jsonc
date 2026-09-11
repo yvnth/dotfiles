@@ -3,36 +3,44 @@
   "position": "top",
   "exclusive": true,
   "modules-left": [
-    "clock#date",
     "clock#time",
-    "cpu",
-    "memory"
+    "clock#date",
+    "memory",
+    "cpu"
   ],
   "modules-center": [
-    "sway/workspaces"
+    "mango/workspaces",
+    "mango/layout"
   ],
   "modules-right": [
-    "network",
-    "backlight",
-    "pulseaudio",
     "battery",
+    "pulseaudio",
+    "backlight",
+    "network",
     "custom/notifications",
     "tray"
   ],
-  "sway/workspaces": {
+  "mango/workspaces": {
     "format": "{icon}",
-    "format-icons": {
-      "1": "一",
-      "2": "二",
-      "3": "三",
-      "4": "四",
-      "5": "五",
-      "6": "六",
-      "7": "七",
-      "8": "八",
-      "9": "九",
-      "10": "十"
-    }
+    "hide-empty": true,
+    "on-click": "activate"
+  },
+  "mango/layout": {
+    "format": "{}",
+    "format-CT": "center_tile",
+    "format-K": "deck",
+    "format-DW": "dwindle",
+    "format-F": "fair",
+    "format-G": "grid",
+    "format-M": "monocle",
+    "format-RT": "right_tile",
+    "format-S": "scroller",
+    "format-T": "tile",
+    "format-VK": "vertical_deck",
+    "format-VF": "vertical_fair",
+    "format-VG": "vertical_grid",
+    "format-VS": "vertical_scroller",
+    "format-VT": "vertical_tile"
   },
   "network": {
     "interval": 5,

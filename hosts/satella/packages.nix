@@ -75,5 +75,6 @@
     wl-screenrec
     zip
     zoxide
+    (callPackage ../../pkgs/rofi-pass { })
   ];
 }

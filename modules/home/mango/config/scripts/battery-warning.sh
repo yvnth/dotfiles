@@ -3,7 +3,7 @@
 CRIT_LOW_ID=9999
 CRIT_FULL_ID=9998
 
-ICON_DIR="$HOME/.config/sway/assets"
+ICON_DIR="$HOME/.config/mango/assets"
 
 notified_low=false
 notified_full=false

@@ -2,13 +2,13 @@
 #+AUTHOR: Yashwanth Prasannakumar (yvnth)
 #+OPTIONS: toc:nil
 
-** 1. Create Host Directory
+* 1. Create Host Directory
 
 #+begin_src bash
 mkdir -p hosts/<hostname>
 #+end_src
 
-** 2. Add Host Files
+* 2. Add Host Files
 
 Create the following files under =hosts/<hostname>/=:
 
@@ -17,13 +17,13 @@ Create the following files under =hosts/<hostname>/=:
 - =home.nix= — Home Manager configuration; use =hosts/satella/home.nix= as a reference
 - =packages.nix= — system packages and fonts; use =hosts/satella/packages.nix= as a reference
 
-** 3. Add to Flake
+* 3. Add to Flake
 
 Add the host under =nixosConfigurations= in =flake.nix=:
 
 #+begin_src nix
 nixosConfigurations.<hostname> = nixpkgs.lib.nixosSystem {
-  system = "x86_64-linux"; # or aarch64-linux, aarch64-darwin, x86_64-darwin
+  system = "x86_64-linux"; # or aarch64-linux, aarch64-darwin
   specialArgs = {
     inherit inputs;
   };
@@ -34,17 +34,17 @@ nixosConfigurations.<hostname> = nixpkgs.lib.nixosSystem {
 };
 #+end_src
 
-** 4. Add to Hosts Table
+* 4. Add to Hosts Table
 
 Add the new host to =hosts/README.org=.
 
-** 5. Create Secrets Directory
+* 5. Create Secrets Directory
 
 #+begin_src bash
 mkdir -p secrets/<hostname>/<user>
 #+end_src
 
-** 6. Add Age Key to =.sops.yaml=
+* 6. Add Age Key to =.sops.yaml=
 
 Generate a new age key on the new host:
 
@@ -73,7 +73,7 @@ creation_rules:
           - *<hostname>_<username>
 #+end_src
 
-** 7. Build and Switch
+* 7. Build and Switch
 
 #+begin_src bash
 sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>

@@ -12,6 +12,6 @@
 | sekhmet  | witch of sloth    | —              | future · gaming PC      |
 | typhon   | witch of pride    | —              | —                       |
 
-** satella
+* Satella
 
 [[file:../.github/assets/satella.png]]

@@ -19,13 +19,15 @@ window#waybar {
 }
 
 .modules-left,
+.modules-center,
 .modules-right {
   background: @bg;
   padding: 0;
   margin: 0;
 }
 
-#workspaces {
+#workspaces,
+#layout {
   background: @bg;
   margin: 0;
   padding: 0;
@@ -40,24 +42,52 @@ window#waybar {
   transition: all 0.2s ease;
 }
 
-#workspaces button.empty {
+#workspaces button.hidden {
   color: alpha(@pink, 0.35);
 }
 
-#workspaces button.visible,
-#workspaces button.occupied {
+#workspaces button.visible {
   color: @pink;
-  background: alpha(@pink, 0.10);
 }
 
 #workspaces button.active {
-  color: @bg;
   background: @pink;
+  color: @bg;
+}
+
+#workspaces button.urgent,
+#workspaces button.overview {
+  background: @pink;
+  color: @bg;
 }
 
 #workspaces button:hover {
   background: alpha(@pink, 0.18);
   color: @pink;
+}
+
+#layout {
+  color: @pink;
+  padding: 2px 8px;
+}
+
+#window {
+  color: @pink;
+  background: @bg;
+  padding: 2px 8px;
+}
+
+window#waybar.empty #window {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+
+#language,
+#keymode {
+  color: @pink;
+  background: @bg;
+  padding: 2px 8px;
 }
 
 #network,
@@ -74,9 +104,9 @@ window#waybar {
 #custom-notifications {
   background: @bg;
   color: @pink;
-  border-radius: 0;
   padding: 2px 6px;
   margin: 0;
+  border-radius: 0;
   transition: color 0.2s;
 }
 

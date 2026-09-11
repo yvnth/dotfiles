@@ -1,33 +1,35 @@
-#+TITLE: NixOS dotfiles ❄️
+#+TITLE: Nix Dotfiles ❄️
 #+AUTHOR: Yashwanth Prasannakumar (yvnth)
 #+OPTIONS: toc:nil
 
 Personal [[https://nixos.org/][NixOS]] configuration, managed with [[https://github.com/nix-community/home-manager][home-manager]] and [[https://wiki.nixos.org/wiki/Flakes][flakes]].
 
-See [[file:docs/BOOTSTRAP.org][BOOTSTRAP]] for fresh install instructions.
+See [[file:docs/BOOTSTRAP.org][Bootstrap]] for fresh install instructions.
 
-** Repo layout
+* Repo layout
 
 #+begin_example
-docs/             # documentation
+docs/             # reference documentation
 hosts/            # per-machine configuration
-modules/core/     # system-level NixOS modules
+modules/core/     # system-level modules
 modules/home/     # home-manager modules
-secrets/          # sops-nix encrypted secrets, per host/user
+pkgs/             # custom packages
+secrets/          # sops-nix encrypted secrets
 #+end_example
 
-** Documentation
+* Documentation
 
 - [[file:modules/core/README.org][Adding a core module]]
 - [[file:modules/home/README.org][Adding a home module]]
 - [[file:docs/NEW-HOST.org][Adding a new host]]
 - [[file:docs/NEW-USER.org][Adding a new user]]
+- [[file:pkgs/README.org][Adding a custom package]]
 - [[file:hosts/README.org][Hosts]]
 - [[file:secrets/README.org][Managing secrets]]
 
-** Stack
-- *My editor of choice:* [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][Emacs]] • [[https://github.com/yvnth/nixmacs][My Emacs Config]]
-- *Window manager:* [[https://swaywm.org/][Sway]]
+* Stack
+- *My text editor of choice:* [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][Emacs]] • [[https://github.com/yvnth/nixmacs][My Emacs config]]
+- *Window manager:* [[https://mangowm.github.io/][Mango]]
 - *Secure Boot:* [[https://github.com/nix-community/lanzaboote][Lanzaboote]]
 - *Secrets:* [[https://github.com/Mic92/sops-nix][sops-nix]]
 

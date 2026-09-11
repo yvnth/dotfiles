@@ -7,6 +7,7 @@
     ./java
     ./lazydocker
     ./lazygit
+    ./mango
     ./miru
     ./nix-search
     ./rofi
@@ -14,7 +15,6 @@
     ./shell
     ./spicetify
     ./starship
-    ./sway
     ./swaylock
     ./swaync
     ./tmux

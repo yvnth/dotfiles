@@ -4,7 +4,7 @@
 
 Each module lives as a =.nix= file under =modules/core/=.
 
-** 1. Create =modules/core/<name>.nix=
+* 1. Create =modules/core/<name>.nix=
 #+begin_src nix
 { lib, config, ... }:
 {
@@ -15,7 +15,7 @@ Each module lives as a =.nix= file under =modules/core/=.
 }
 #+end_src
 
-** 2. Add it to =modules/core/default.nix=
+* 2. Add it to =modules/core/default.nix=
 #+begin_src nix
 imports = [
   # ...existing...
@@ -23,7 +23,7 @@ imports = [
 ];
 #+end_src
 
-** 3. Enable it in =hosts/<hostname>/configuration.nix=
+* 3. Enable it in =hosts/<hostname>/configuration.nix=
 #+begin_src nix
 modules.<name>.enable = true;
 #+end_src
