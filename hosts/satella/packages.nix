@@ -15,21 +15,15 @@
 
   environment.systemPackages = with pkgs; [
     acpi
-    age
-    autotiling
     bibata-cursors
-    bootdev-cli
     brightnessctl
     cliphist
-    docker-buildx
-    docker-compose
     eza
     element-desktop
     fd
     firefox-devedition
     fzf
     gcc
-    gh
     go
     grim
     helix
@@ -48,7 +42,6 @@
     networkmanagerapplet
     nh
     nix-output-monitor
-    nodejs
     nwg-look
     papirus-icon-theme
     pass
@@ -56,8 +49,6 @@
     pokego
     postman
     python314
-    python314Packages.pip
-    python314Packages.uv
     ripgrep
     rofimoji
     rustup
@@ -65,15 +56,12 @@
     slurp
     sops
     swaybg
-    typst
-    unzip
     vlc
     vscode
     waytrogen
     wget
     wl-clipboard
     wl-screenrec
-    zip
     zoxide
     (callPackage ../../pkgs/rofi-pass { })
   ];

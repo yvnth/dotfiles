@@ -14,4 +14,4 @@
 
 * Satella
 
-[[file:../.github/assets/satella.png]]
+[[file:../hosts/assets/satella.png]]
