@@ -2,7 +2,7 @@
 #+AUTHOR: Yashwanth Prasannakumar (yvnth)
 #+OPTIONS: toc:nil
 
-* 1. Git install
+* 1. Install Git
 
 A fresh NixOS install won't have =git=, so enter a nix shell with it:
 
@@ -18,6 +18,8 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
   --mode destroy,format,mount \
   ~/dotfiles/hosts/<hostname>/disko.nix
 #+end_src
+
+Note: Optionally, enter a temporary shell with the [[../shell.nix][additional packages]] using =nix-shell= from the repository root if they are needed during the installation process.
 
 * 3. Inject Hardware Config
 
