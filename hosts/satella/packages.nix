@@ -18,18 +18,15 @@
     bibata-cursors
     brightnessctl
     cliphist
+    direnv
     eza
     element-desktop
     fd
     firefox-devedition
     fzf
-    gcc
-    go
     grim
-    helix
     imv
     jq
-    just
     jujutsu
     kdePackages.kate
     libnotify
@@ -48,10 +45,8 @@
     pavucontrol
     pokego
     postman
-    python314
     ripgrep
     rofimoji
-    rustup
     satty
     slurp
     sops

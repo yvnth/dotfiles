@@ -31,13 +31,13 @@
       url = "github:gmodena/nix-flatpak/?ref=latest";
     };
 
-    nixmacs = {
-      url = "github:yvnth/nixmacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
+    };
+
+    nvix = {
+      url = "github:yvnth/nvix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
@@ -69,8 +69,8 @@
       lanzaboote,
       mangowm,
       nix-flatpak,
-      nixmacs,
       nixpkgs,
+      nvix,
       sops-nix,
       spicetify-nix,
       stylix,
@@ -103,8 +103,6 @@
             nixpkgs.overlays = [
               waybar.overlays.default
 
-              nixmacs.inputs.emacs-overlay.overlays.default
-
               (final: prev: {
                 xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (_: {
                   version = "0.7.0";
@@ -131,7 +129,7 @@
                 imports = [
                   ./hosts/satella/home.nix
                   spicetify-nix.homeManagerModules.default
-                  nixmacs.homeManagerModules.default
+                  nvix.homeManagerModules.default
                 ];
               };
             };

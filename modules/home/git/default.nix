@@ -15,7 +15,7 @@
 
         init.defaultBranch = "master";
 
-        core.editor = "hx";
+        core.editor = "nvim";
 
         commit.gpgsign = true;
         gpg.format = "openpgp";

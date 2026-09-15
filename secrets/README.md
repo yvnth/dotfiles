@@ -1,42 +1,47 @@
-#+TITLE: Secret Management
-#+AUTHOR: Yashwanth Prasannakumar (yvnth)
-#+OPTIONS: toc:nil
+# Secret Management
 
-Secrets are encrypted with [[https://github.com/Mic92/sops-nix][sops-nix]] using [[https://github.com/FiloSottile/age][age]].
+Secrets are encrypted with [sops-nix](https://github.com/Mic92/sops-nix) using [age](https://github.com/FiloSottile/age).
 
-* Structure
-#+begin_example
+## Structure
+
+```
 secrets/
 ├── common/          # shared across all hosts
 │   └── <name>.yaml
 └── <hostname>/      # host or user specific
     └── <username>/
         └── <name>.yaml
-#+end_example
+```
 
-* Age Key
-The age key used to decrypt secrets on a host lives at =/var/lib/sops-nix/key.txt= (root-owned, =600=) and is referenced via:
-#+begin_src nix
+## Age Key
+
+The age key used to decrypt secrets on a host lives at `/var/lib/sops-nix/key.txt` (root-owned, `600`) and is referenced via:
+
+```nix
 sops.age.keyFile = "/var/lib/sops-nix/key.txt";
-#+end_src
+```
 
-** Using the CLI with this key
-The =sops= CLI does not read =sops.age.keyFile= from the Nix config automatically.
-Point it at the key explicitly with =SOPS_AGE_KEY_FILE=, and use =sudo -E= to
+### Using the CLI with this key
+
+The `sops` CLI does not read `sops.age.keyFile` from the Nix config automatically.
+Point it at the key explicitly with `SOPS_AGE_KEY_FILE`, and use `sudo -E` to
 preserve that env var when root is needed to read the key file:
-#+begin_src bash
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-* Adding a New Secret
+## Adding a New Secret
 
-** 1. Create or edit a secrets file
-#+begin_src bash
+### 1. Create or edit a secrets file
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-** 2. Reference it in =modules/core/sops.nix=
-#+begin_src nix
+### 2. Reference it in `modules/core/sops.nix`
+
+```nix
 sops.secrets.<name> = {
   sopsFile = ../../secrets/<path>/<to>/<key>.yaml;
   key = "<key>";
@@ -44,36 +49,42 @@ sops.secrets.<name> = {
   owner = "<username>";
   mode = "0400";
 };
-#+end_src
+```
 
-* Extracting a Single Value (e.g. a cert)
-Use =--extract= to print just one key's raw content, useful for piping to a file:
-#+begin_src bash
+## Extracting a Single Value (e.g. a cert)
+
+Use `--extract` to print just one key's raw content, useful for piping to a file:
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d --extract '["cert"]' secrets/<path>/<to>/<key>.yaml > out.crt
-#+end_src
+```
 
 If unsure of the key name, decrypt the whole file first to inspect its structure:
-#+begin_src bash
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-* Adding a New Age Key
+## Adding a New Age Key
 
-** 1. Generate a new age key
-#+begin_src bash
+### 1. Generate a new age key
+
+```bash
 sudo mkdir -p /var/lib/sops-nix
 sudo age-keygen -o /var/lib/sops-nix/key.txt
 sudo chmod 600 /var/lib/sops-nix/key.txt
 sudo chown root:root /var/lib/sops-nix/key.txt
-#+end_src
+```
 
-** 2. Get the public key
-#+begin_src bash
+### 2. Get the public key
+
+```bash
 sudo age-keygen -y /var/lib/sops-nix/key.txt
-#+end_src
+```
 
-** 3. Add the public key to =.sops.yaml=
-#+begin_src yaml
+### 3. Add the public key to `.sops.yaml`
+
+```yaml
 keys:
   - &<hostname>_<username> age1...
 creation_rules:
@@ -81,28 +92,33 @@ creation_rules:
     key_groups:
       - age:
           - *<hostname>_<username>
-#+end_src
+```
 
-** 4. Re-encrypt all secrets with the new key
-#+begin_src bash
+### 4. Re-encrypt all secrets with the new key
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops updatekeys secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-* Rotating an Age Key
+## Rotating an Age Key
 
-** 1. Generate a new age key alongside the old one
+### 1. Generate a new age key alongside the old one
+
 Keep the old key in place for now.
-#+begin_src bash
+
+```bash
 sudo age-keygen -o /var/lib/sops-nix/key.txt.new
-#+end_src
+```
 
-** 2. Extract the new public key
-#+begin_src bash
+### 2. Extract the new public key
+
+```bash
 sudo age-keygen -y /var/lib/sops-nix/key.txt.new
-#+end_src
+```
 
-** 3. Add the new public key to =.sops.yaml= while keeping the old one
-#+begin_src yaml
+### 3. Add the new public key to `.sops.yaml` while keeping the old one
+
+```yaml
 keys:
   - &<hostname>_<username>_old age1...  # old key, still needed to decrypt
   - &<hostname>_<username> age1...      # new key
@@ -112,27 +128,31 @@ creation_rules:
       - age:
           - *<hostname>_<username>_old
           - *<hostname>_<username>
-#+end_src
+```
 
-** 4. Re-encrypt all secrets so they're accessible by both keys
-#+begin_src bash
+### 4. Re-encrypt all secrets so they're accessible by both keys
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops updatekeys secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-** 5. Replace the old key file with the new one
-#+begin_src bash
+### 5. Replace the old key file with the new one
+
+```bash
 sudo mv /var/lib/sops-nix/key.txt.new /var/lib/sops-nix/key.txt
 sudo chmod 600 /var/lib/sops-nix/key.txt
 sudo chown root:root /var/lib/sops-nix/key.txt
-#+end_src
+```
 
-** 6. Verify decryption still works
-#+begin_src bash
+### 6. Verify decryption still works
+
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
 
-** 7. Remove the old key from =.sops.yaml= and re-encrypt one final time
-#+begin_src yaml
+### 7. Remove the old key from `.sops.yaml` and re-encrypt one final time
+
+```yaml
 keys:
   - &<hostname>_<username> age1...  # new key only
 creation_rules:
@@ -140,8 +160,8 @@ creation_rules:
     key_groups:
       - age:
           - *<hostname>_<username>
-#+end_src
+```
 
-#+begin_src bash
+```bash
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops updatekeys secrets/<path>/<to>/<key>.yaml
-#+end_src
+```
