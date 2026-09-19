@@ -1,0 +1,14 @@
+# My custom packages
+
+Custom packages: dropped from nixpkgs, not yet in nixpkgs, or my
+own patched/forked versions.
+
+Each sub-directory = one package, pulled in via `callPackage`.
+
+## Adding a package
+
+- New directory under `pkgs/<name>/`
+- `default.nix` with the derivation
+
+*Note: If this grows to a significant amount, I'll spin these off
+into my own NUR (Nix User Repository) instead.*

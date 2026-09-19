@@ -7,8 +7,8 @@ pkgs.mkShell {
     age
     gh
     git
-    helix
     just
+    neovim
     sops
   ];
 }

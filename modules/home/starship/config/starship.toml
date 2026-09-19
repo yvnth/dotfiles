@@ -7,6 +7,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$nix_shell\
 $fill\
 $cmd_duration\
 $line_break\
@@ -49,3 +50,7 @@ style = "yellow"
 
 [battery]
 disabled = true
+
+[nix_shell]
+symbol = "   "
+format = "[$symbol](blue)"

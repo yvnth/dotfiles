@@ -1,4 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+
 {
   fonts.packages = with pkgs; [
     lohit-fonts.tamil
@@ -18,18 +19,17 @@
     bibata-cursors
     brightnessctl
     cliphist
+    direnv
     eza
     element-desktop
     fd
     firefox-devedition
     fzf
-    gcc
-    go
+    gh
+    git
     grim
-    helix
     imv
     jq
-    just
     jujutsu
     kdePackages.kate
     libnotify
@@ -48,13 +48,11 @@
     pavucontrol
     pokego
     postman
-    python314
     ripgrep
     rofimoji
     rustup
     satty
     slurp
-    sops
     swaybg
     vlc
     vscode
@@ -63,6 +61,9 @@
     wl-clipboard
     wl-screenrec
     zoxide
+
+    inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     (callPackage ../../pkgs/rofi-pass { })
   ];
 }

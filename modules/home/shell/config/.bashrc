@@ -3,12 +3,12 @@ export PATH="$HOME/.cargo/bin:$HOME/.config/scripts:$PATH"
 export GOPATH="$HOME/.local/share/go"
 export PATH="$PATH:$GOPATH/bin"
 
-export EDITOR="hx"
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
 export SYSTEMD_EDITOR="$EDITOR"
 
-export MANPAGER='hx'
+export MANPAGER='nvim +Man!'
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
@@ -23,6 +23,7 @@ shopt -s histappend cmdhist lithist
 source ~/.config/shell/aliases
 
 eval "$(starship init bash)"
+eval "$(direnv hook bash)"
 eval "$(fzf --bash)"
 eval "$(zoxide init bash --cmd cd)"
 

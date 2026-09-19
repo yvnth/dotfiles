@@ -1,11 +1,10 @@
-#+TITLE: Adding a new user-level module
-#+AUTHOR: Yashwanth Prasannakumar (yvnth)
-#+OPTIONS: toc:nil
+# Adding a new user-level module
 
-Each module lives in its own directory under =modules/home/=.
+Each module lives in its own directory under `modules/home/`.
 
-* 1. Create =modules/home/<name>/default.nix=
-#+begin_src nix
+## 1. Create `modules/home/<name>/default.nix`
+
+```nix
 { lib, config, pkgs, ... }:
 {
   options.homeModules.<name>.enable = lib.mkEnableOption "<name>";
@@ -17,17 +16,19 @@ Each module lives in its own directory under =modules/home/=.
       config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/dotfiles/modules/home/<name>/config";
   };
 }
-#+end_src
+```
 
-* 2. Add it to =modules/home/default.nix=
-#+begin_src nix
+## 2. Add it to `modules/home/default.nix`
+
+```nix
 imports = [
   # ...existing...
   ./<name>
 ];
-#+end_src
+```
 
-* 3. Enable it in =hosts/<hostname>/home.nix=
-#+begin_src nix
+## 3. Enable it in `hosts/<hostname>/home.nix`
+
+```nix
 homeModules.<name>.enable = true;
-#+end_src
+```

@@ -1,9 +1,7 @@
-#+TITLE: Hosts
-#+AUTHOR: Yashwanth Prasannakumar (yvnth)
-#+OPTIONS: toc:nil
+# Hosts
 
 | Hostname | Alias             | Device         | Role                    |
-|----------+-------------------+----------------+-------------------------|
+|----------|-------------------|----------------|-------------------------|
 | carmilla | witch of lust     | —              | —                       |
 | daphne   | witch of gluttony | —              | —                       |
 | echidna  | witch of greed    | —              | future · server         |
@@ -12,6 +10,6 @@
 | sekhmet  | witch of sloth    | —              | future · gaming PC      |
 | typhon   | witch of pride    | —              | —                       |
 
-* Satella
+## Satella
 
-[[file:../hosts/assets/satella.png]]
+![satella](../hosts/assets/satella.png)
