@@ -18,16 +18,16 @@
     bibata-cursors
     brightnessctl
     cliphist
+    direnv
     eza
     element-desktop
     fd
     firefox-devedition
     fzf
-    gcc
-    go
+    gh
+    git
     grim
     helix
-    imv
     jq
     just
     jujutsu
@@ -42,19 +42,17 @@
     networkmanagerapplet
     nh
     nix-output-monitor
+    nsxiv
     nwg-look
     papirus-icon-theme
     pass
     pavucontrol
     pokego
     postman
-    python314
     ripgrep
     rofimoji
-    rustup
     satty
     slurp
-    sops
     swaybg
     vlc
     vscode

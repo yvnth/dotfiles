@@ -1,4 +1,4 @@
-#+TITLE: Nix Dotfiles ❄️
+#+TITLE: NixOS Dotfiles ❄️
 #+AUTHOR: Yashwanth Prasannakumar (yvnth)
 #+OPTIONS: toc:nil
 
@@ -7,7 +7,6 @@ Personal [[https://nixos.org/][NixOS]] configuration, managed with [[https://git
 See [[file:docs/BOOTSTRAP.org][Bootstrap]] for fresh install instructions.
 
 * Repo layout
-
 #+begin_example
 docs/             # reference documentation
 hosts/            # per-machine configuration
@@ -18,7 +17,6 @@ secrets/          # sops-nix encrypted secrets
 #+end_example
 
 * Documentation
-
 - [[file:modules/core/README.org][Adding a core module]]
 - [[file:modules/home/README.org][Adding a home module]]
 - [[file:docs/NEW-HOST.org][Adding a new host]]
@@ -28,7 +26,7 @@ secrets/          # sops-nix encrypted secrets
 - [[file:secrets/README.org][Managing secrets]]
 
 * Stack
-- *My text editor of choice:* [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][Emacs]] • [[https://github.com/yvnth/nixmacs][My Emacs config]]
+- *My text editor of choice:* [[https://www.gnu.org/savannah-checkouts/gnu/emacs/emacs.html][GNU Emacs]] • [[https://github.com/yvnth/nixmacs][My Emacs configuration]]
 - *Window manager:* [[https://mangowm.github.io/][Mango]]
 - *Secure Boot:* [[https://github.com/nix-community/lanzaboote][Lanzaboote]]
 - *Secrets:* [[https://github.com/Mic92/sops-nix][sops-nix]]

@@ -6,9 +6,6 @@ _default:
 rebuild host=hostname:
     nh os switch . -H {{ host }}
 
-check:
-    nix flake check
-
 clean:
     nh clean all
     sudo nix-store --optimize

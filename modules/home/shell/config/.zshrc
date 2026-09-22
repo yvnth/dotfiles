@@ -1,8 +1,8 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
-    mkdir -p "${ZINIT_HOME:h}"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+	mkdir -p "${ZINIT_HOME:h}"
+	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
@@ -61,10 +61,10 @@ setopt HIST_SAVE_NO_DUPS
 typeset -U path
 
 path=(
-    "$HOME/.cargo/bin"
-    "$HOME/.config/scripts"
-    "$HOME/.local/share/go/bin"
-    $path
+	"$HOME/.cargo/bin"
+	"$HOME/.config/scripts"
+	"$HOME/.local/share/go/bin"
+	$path
 )
 
 export GOPATH="$HOME/.local/share/go"
@@ -81,5 +81,6 @@ export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 source ~/.config/shell/aliases
 
 eval "$(starship init zsh)"
+eval "$(direnv hook zsh)"
 
 pokego --random 1-8

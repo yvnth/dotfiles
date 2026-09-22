@@ -7,6 +7,7 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
+$nix_shell\
 $fill\
 $cmd_duration\
 $line_break\
@@ -17,6 +18,14 @@ symbol = " "
 
 [directory]
 style = "blue"
+
+[nix_shell]
+format = "[$symbol]($style) "
+symbol = " 󱄅 "
+style = "218"
+impure_msg = ""
+pure_msg = ""
+unknown_msg = ""
 
 [character]
 success_symbol = "[❯](purple)"

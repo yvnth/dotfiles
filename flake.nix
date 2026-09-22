@@ -3,60 +3,87 @@
 
   inputs = {
     disko = {
-      url = "github:nix-community/disko";
+      type = "github";
+      owner = "nix-community";
+      repo = "disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fast-nix-gc = {
-      url = "github:Mic92/fast-nix-gc";
+      type = "github";
+      owner = "Mic92";
+      repo = "fast-nix-gc";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      type = "github";
+      owner = "nix-community";
+      repo = "home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v1.1.0";
+      type = "github";
+      owner = "nix-community";
+      repo = "lanzaboote";
+      ref = "v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     mangowm = {
-      url = "github:mangowm/mango";
+      type = "github";
+      owner = "mangowm";
+      repo = "mango";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nix-flatpak = {
-      url = "github:gmodena/nix-flatpak/?ref=latest";
+      type = "github";
+      owner = "gmodena";
+      repo = "nix-flatpak";
+      ref = "latest";
     };
 
     nixmacs = {
-      url = "github:yvnth/nixmacs";
+      type = "github";
+      owner = "yvnth";
+      repo = "nixmacs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixpkgs = {
-      url = "github:nixos/nixpkgs/nixos-unstable";
+      type = "github";
+      owner = "NixOS";
+      repo = "nixpkgs";
+      ref = "nixos-unstable";
     };
 
     sops-nix = {
-      url = "github:Mic92/sops-nix";
+      type = "github";
+      owner = "Mic92";
+      repo = "sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
+      type = "github";
+      owner = "Gerg-L";
+      repo = "spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:nix-community/stylix";
+      type = "github";
+      owner = "nix-community";
+      repo = "stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     waybar = {
-      url = "github:Alexays/Waybar";
+      type = "github";
+      owner = "Alexays";
+      repo = "Waybar";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -103,8 +130,6 @@
             nixpkgs.overlays = [
               waybar.overlays.default
 
-              nixmacs.inputs.emacs-overlay.overlays.default
-
               (final: prev: {
                 xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (_: {
                   version = "0.7.0";
@@ -127,11 +152,12 @@
               };
               useGlobalPkgs = true;
               useUserPackages = true;
+
               users.yvnth = {
                 imports = [
                   ./hosts/satella/home.nix
+                  nixmacs.homeModules.default
                   spicetify-nix.homeManagerModules.default
-                  nixmacs.homeManagerModules.default
                 ];
               };
             };

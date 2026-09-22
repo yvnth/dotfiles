@@ -1,13 +1,13 @@
-[manager]
+[mgr]
 show_hidden = true
 sort_by = "natural"
 sort_dir_first = true
 
 [opener]
-edit = [{ run = 'hx "$@"', block = true }]
-image = [{ run = 'imv "$@"', orphan = true }]
-pdf = [{ run = 'zathura "$@"', orphan = true }]
-video = [{ run = 'mpv "$@"', orphan = true }]
+edit = [{ run = 'hx %s', block = true }]
+image = [{ run = 'nsxiv %s', orphan = true }]
+pdf = [{ run = 'zathura %s', orphan = true }]
+video = [{ run = 'mpv %s', orphan = true }]
 
 [open]
 rules = [

@@ -9,6 +9,7 @@ pkgs.mkShell {
     git
     helix
     just
+    just
     sops
   ];
 }
