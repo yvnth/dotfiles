@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   fonts.packages = with pkgs; [
     lohit-fonts.tamil
@@ -27,9 +27,7 @@
     gh
     git
     grim
-    helix
     jq
-    just
     jujutsu
     kdePackages.kate
     libnotify
@@ -61,6 +59,7 @@
     wl-clipboard
     wl-screenrec
     zoxide
+    inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.default
     (callPackage ../../pkgs/rofi-pass { })
   ];
 }

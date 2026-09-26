@@ -1,8 +1,8 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
 if [ ! -d "$ZINIT_HOME" ]; then
-	mkdir -p "${ZINIT_HOME:h}"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+  mkdir -p "${ZINIT_HOME:h}"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
@@ -38,7 +38,7 @@ zstyle ':completion:*' cache-path "${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --icons --color=always $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --icons --color=always $realpath'
 
-bindkey -e
+bindkey -v
 bindkey '^p' history-substring-search-up
 bindkey '^n' history-substring-search-down
 bindkey '^[[1;5D' backward-word
@@ -61,20 +61,20 @@ setopt HIST_SAVE_NO_DUPS
 typeset -U path
 
 path=(
-	"$HOME/.cargo/bin"
-	"$HOME/.config/scripts"
-	"$HOME/.local/share/go/bin"
-	$path
+  "$HOME/.cargo/bin"
+  "$HOME/.config/scripts"
+  "$HOME/.local/share/go/bin"
+  $path
 )
 
 export GOPATH="$HOME/.local/share/go"
 
-export EDITOR="hx"
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export SUDO_EDITOR="$EDITOR"
 export SYSTEMD_EDITOR="$EDITOR"
 
-export MANPAGER="hx"
+export MANPAGER="nvim +Man!"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 

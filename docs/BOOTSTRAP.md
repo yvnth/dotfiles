@@ -1,45 +1,51 @@
-#+TITLE: Bootstrap process
-#+AUTHOR: Yashwanth Prasannakumar (yvnth)
-#+OPTIONS: toc:nil
+# Bootstrap process
 
-* 1. Install Git
-A fresh NixOS install won't have =git=, so enter a nix shell with it:
-#+begin_src bash
+## 1. Install Git
+
+A fresh NixOS install won't have `git`, so enter a nix shell with it:
+
+```bash
 nix-shell -p git
-#+end_src
+```
 
-* 2. Clone and Partition with Disko
-#+begin_src bash
+## 2. Clone and Partition with Disko
+
+```bash
 git clone https://github.com/yvnth/dotfiles.git ~/dotfiles
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- \
   --mode destroy,format,mount \
   ~/dotfiles/hosts/<hostname>/disko.nix
-#+end_src
+```
 
-Note: Optionally, enter a temporary shell with the [[../shell.nix][additional packages]] using =nix-shell= from the repository root if they are needed during the installation process.
+Note: Optionally, enter a temporary shell with the [additional packages](../shell.nix) using `nix-shell` from the repository root if they are needed during the installation process.
 
-* 3. Inject Hardware Config
-#+begin_src bash
+## 3. Inject Hardware Config
+
+```bash
 sudo nixos-generate-config --no-filesystems --root /mnt
 rm ~/dotfiles/hosts/<hostname>/hardware-configuration.nix
 sudo cp /mnt/etc/nixos/hardware-configuration.nix ~/dotfiles/hosts/<hostname>/hardware-configuration.nix
-#+end_src
+```
 
-* 4. Install
-#+begin_src bash
+## 4. Install
+
+```bash
 sudo nixos-install --flake ~/dotfiles#<hostname>
-#+end_src
+```
 
-* 5. Chroot and First Rebuild
-/Required to not get locked on login/
+## 5. Chroot and First Rebuild
 
-** Enter chroot
-#+begin_src bash
+*Required to not get locked on login*
+
+### Enter chroot
+
+```bash
 sudo nixos-enter --root /mnt
-#+end_src
+```
 
 Inside the chroot:
-#+begin_src bash
+
+```bash
 passwd yvnth
 su - yvnth -c 'git clone https://github.com/yvnth/dotfiles.git ~/dotfiles'
 rm /home/yvnth/dotfiles/hosts/<hostname>/hardware-configuration.nix
@@ -47,47 +53,50 @@ cp /etc/nixos/hardware-configuration.nix /home/yvnth/dotfiles/hosts/<hostname>/h
 chown yvnth:users /home/yvnth/dotfiles/hosts/<hostname>/hardware-configuration.nix
 nixos-rebuild switch --flake /home/yvnth/dotfiles#<hostname>
 exit
-#+end_src
+```
 
-#+begin_src bash
+```bash
 reboot
-#+end_src
+```
 
-* 6. Copy Age Key
-#+begin_src bash
+## 6. Copy Age Key
+
+```bash
 sudo mkdir -p /var/lib/sops-nix
 sudo cp /path/to/your/keys.txt /var/lib/sops-nix/key.txt
 sudo chmod 600 /var/lib/sops-nix/key.txt
 sudo chown root:root /var/lib/sops-nix/key.txt
-#+end_src
+```
 
-* 7. Restore Secure Boot Keys
-#+begin_src bash
+## 7. Restore Secure Boot Keys
+
+```bash
 sudo cp -r /path/to/your/sbctl /var/lib/sbctl
 sudo chmod 700 /var/lib/sbctl/keys
 sudo find /var/lib/sbctl/keys -name "*.key" -exec chmod 600 {} \;
-#+end_src
+```
 
-* 8. Build and Switch
-#+begin_src bash
+## 8. Build and Switch
+
+```bash
 sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>
 reboot
-#+end_src
+```
 
-#+begin_quote
-After reboot, Lanzaboote will automatically enroll your keys into the firmware.
+> After reboot, Lanzaboote will automatically enroll your keys into the firmware.
+>
+> Go into UEFI and enable Secure Boot if it isn't already.
 
-Go into UEFI and enable Secure Boot if it isn't already.
-#+end_quote
+## 9. Regenerate SSH Public Key
 
-* 9. Regenerate SSH Public Key
-#+begin_src bash
+```bash
 ssh-keygen -y -f ~/.ssh/id_ed25519 > ~/.ssh/id_ed25519.pub
-#+end_src
+```
 
-* 10. Import GPG Key & Restore Password Store
-#+begin_src bash
+## 10. Import GPG Key & Restore Password Store
+
+```bash
 gpg --import ~/.gnupg/secret-key.asc
 gpg --import-ownertrust ~/.gnupg/ownertrust.txt
 cp -r /path/to/your/pass ~/.password-store
-#+end_src
+```

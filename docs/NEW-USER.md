@@ -1,10 +1,10 @@
-#+TITLE: Adding a New User
-#+AUTHOR: Yashwanth Prasannakumar (yvnth)
-#+OPTIONS: toc:nil
+# Adding a New User
 
-* 1. Add User to System Config
-Add the user to =hosts/<hostname>/configuration.nix=:
-#+begin_src nix
+## 1. Add User to System Config
+
+Add the user to `hosts/<hostname>/configuration.nix`:
+
+```nix
 users.users.<username> = {
   isNormalUser = true;
   description = "<username>";
@@ -14,11 +14,13 @@ users.users.<username> = {
     "networkmanager"
   ];
 };
-#+end_src
+```
 
-* 2. Create Home Config
-Create =hosts/<hostname>/home.nix= for the user, using =hosts/satella/home.nix= as a reference:
-#+begin_src nix
+## 2. Create Home Config
+
+Create `hosts/<hostname>/home.nix` for the user, using `hosts/satella/home.nix` as a reference:
+
+```nix
 { ... }:
 {
   imports = [ ../../modules/home ];
@@ -32,31 +34,37 @@ Create =hosts/<hostname>/home.nix= for the user, using =hosts/satella/home.nix= 
     # enable modules as needed
   };
 }
-#+end_src
+```
 
-* 3. Add to Home Manager in Flake
-Add the user under =home-manager.users= in =flake.nix=:
-#+begin_src nix
+## 3. Add to Home Manager in Flake
+
+Add the user under `home-manager.users` in `flake.nix`:
+
+```nix
 home-manager.users.<username> = {
   imports = [
     ./hosts/<hostname>/home.nix
   ];
 };
-#+end_src
+```
 
-* 4. Create Secrets Directory
-#+begin_src bash
+## 4. Create Secrets Directory
+
+```bash
 mkdir -p secrets/<hostname>/<username>
-#+end_src
+```
 
-* 5. Add Secrets
+## 5. Add Secrets
+
 Add secrets if needed:
-#+begin_src bash
-sops secrets/<hostname>/<username>/<name>.yaml
-#+end_src
 
-Reference them in =modules/core/sops.nix=:
-#+begin_src nix
+```bash
+sops secrets/<hostname>/<username>/<name>.yaml
+```
+
+Reference them in `modules/core/sops.nix`:
+
+```nix
 sops.secrets.<name> = {
   sopsFile = ../../secrets/<hostname>/<username>/<name>.yaml;
   key = "<key>";
@@ -64,9 +72,10 @@ sops.secrets.<name> = {
   owner = "<username>";
   mode = "0400";
 };
-#+end_src
+```
 
-* 6. Build and Switch
-#+begin_src bash
+## 6. Build and Switch
+
+```bash
 sudo nixos-rebuild switch --flake ~/dotfiles#<hostname>
-#+end_src
+```

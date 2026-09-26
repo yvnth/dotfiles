@@ -22,11 +22,11 @@ months=$((total_months % 12))
 years=$((total_months / 12))
 
 p() {
-    if [[ $1 -eq 1 ]]; then
-        printf "${PINK}%s${RESET} %s" "$1" "$2"
-    else
-        printf "${PINK}%s${RESET} %ss" "$1" "$2"
-    fi
+  if [[ $1 -eq 1 ]]; then
+    printf "${PINK}%s${RESET} %s" "$1" "$2"
+  else
+    printf "${PINK}%s${RESET} %ss" "$1" "$2"
+  fi
 }
 
 echo -e "initial linux install time: ${PINK}${install_datetime}${RESET}"

@@ -45,18 +45,18 @@
       ref = "latest";
     };
 
-    nixmacs = {
-      type = "github";
-      owner = "yvnth";
-      repo = "nixmacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixpkgs = {
       type = "github";
       owner = "NixOS";
       repo = "nixpkgs";
       ref = "nixos-unstable";
+    };
+
+    nvix = {
+      type = "github";
+      owner = "yvnth";
+      repo = "nvix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
@@ -96,8 +96,8 @@
       lanzaboote,
       mangowm,
       nix-flatpak,
-      nixmacs,
       nixpkgs,
+      nvix,
       sops-nix,
       spicetify-nix,
       stylix,
@@ -156,7 +156,6 @@
               users.yvnth = {
                 imports = [
                   ./hosts/satella/home.nix
-                  nixmacs.homeModules.default
                   spicetify-nix.homeManagerModules.default
                 ];
               };

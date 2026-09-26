@@ -4,7 +4,7 @@ sort_by = "natural"
 sort_dir_first = true
 
 [opener]
-edit = [{ run = 'hx %s', block = true }]
+edit = [{ run = 'nvim %s', block = true }]
 image = [{ run = 'nsxiv %s', orphan = true }]
 pdf = [{ run = 'zathura %s', orphan = true }]
 video = [{ run = 'mpv %s', orphan = true }]
