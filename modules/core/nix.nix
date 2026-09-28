@@ -9,13 +9,18 @@
 
   config = lib.mkIf config.modules.nix.enable {
     nix = {
-      settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+
+        nix-path = [
+          "nixpkgs=${inputs.nixpkgs}"
+        ];
+      };
 
       registry.nixpkgs.flake = inputs.nixpkgs;
-      nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     };
 
     services = {
