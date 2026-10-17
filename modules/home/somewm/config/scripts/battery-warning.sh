@@ -3,7 +3,7 @@
 CRIT_LOW_ID=9999
 CRIT_FULL_ID=9998
 
-ICON_DIR="$HOME/.config/mango/assets"
+ICON_DIR="$HOME/.config/somewm/assets"
 
 notified_low=false
 notified_full=false

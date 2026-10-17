@@ -38,13 +38,7 @@
 
   i18n.defaultLocale = "en_US.UTF-8";
 
-  programs = {
-    mango.enable = true;
-    xwayland.enable = true;
-    zsh.enable = true;
-  };
-
-  security.pam.services.swaylock = { };
+  programs.zsh.enable = true;
 
   services.displayManager.ly = {
     enable = true;

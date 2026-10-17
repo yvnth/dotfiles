@@ -78,6 +78,8 @@ export MANPAGER="nvim +Man!"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
+export LEDGER_FILE="$HOME/Documents/finance/.hledger.journal"
+
 source ~/.config/shell/aliases
 
 eval "$(starship init zsh)"

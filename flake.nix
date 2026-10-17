@@ -31,13 +31,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    mangowm = {
-      type = "github";
-      owner = "mangowm";
-      repo = "mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-flatpak = {
       type = "github";
       owner = "gmodena";
@@ -57,6 +50,11 @@
       owner = "yvnth";
       repo = "nvix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    somewm = {
+      url = "git+file:///home/yvnth/repos/nixpkgs-fork?ref=somewm/init";
+      flake = false;
     };
 
     sops-nix = {
@@ -79,13 +77,6 @@
       repo = "stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    waybar = {
-      type = "github";
-      owner = "Alexays";
-      repo = "Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -94,14 +85,13 @@
       fast-nix-gc,
       home-manager,
       lanzaboote,
-      mangowm,
       nix-flatpak,
       nixpkgs,
       nvix,
+      somewm,
       sops-nix,
       spicetify-nix,
       stylix,
-      waybar,
       ...
     }@inputs:
     let
@@ -121,16 +111,16 @@
           fast-nix-gc.nixosModules.default
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
-          mangowm.nixosModules.mango
           nix-flatpak.nixosModules.nix-flatpak
           sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
+          "${somewm}/nixos/modules/programs/wayland/somewm.nix"
 
           {
             nixpkgs.overlays = [
-              waybar.overlays.default
-
               (final: prev: {
+                somewm = final.callPackage "${somewm}/pkgs/by-name/so/somewm/package.nix" { };
+
                 xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (_: {
                   version = "0.7.0";
                   src = prev.fetchFromGitHub {
@@ -142,6 +132,8 @@
                 });
               })
             ];
+
+            programs.somewm.enable = true;
           }
 
           {
@@ -152,7 +144,6 @@
               };
               useGlobalPkgs = true;
               useUserPackages = true;
-
               users.yvnth = {
                 imports = [
                   ./hosts/satella/home.nix

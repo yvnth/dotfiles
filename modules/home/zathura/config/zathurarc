@@ -6,7 +6,7 @@ set scroll-step 50
 set zoom-min 10
 set guioptions ""
 
-set font "JetBrainsMono Nerd Font 15"
+set font "PlemolJP Console NF 15"
 
 set default-bg "#303446"
 set default-fg "#c6d0f5"

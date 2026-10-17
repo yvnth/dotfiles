@@ -7,19 +7,17 @@
     ./java
     ./lazydocker
     ./lazygit
-    ./mango
+    ./mako
     ./miru
     ./nix-search
     ./rofi
     ./scripts
     ./shell
+    ./somewm
     ./spicetify
     ./starship
-    ./swaylock
-    ./swaync
     ./tmux
     ./vesktop
-    ./waybar
     ./wezterm
     ./yazi
     ./zathura

@@ -12,6 +12,8 @@ export MANPAGER="nvim +Man!"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
+export LEDGER_FILE="$HOME/Documents/finance/.hledger.journal"
+
 HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 mkdir -p "$(dirname "$HISTFILE")"
 

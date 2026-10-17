@@ -1,0 +1,22 @@
+font=PlemolJP Console NF 13
+background-color=#303446
+text-color=#c6d0f5
+border-color=#f4b8e4
+progress-color=over #414559
+border-size=2
+border-radius=0
+padding=12
+margin=10
+width=360
+default-timeout=5000
+anchor=top-right
+layer=overlay
+icons=1
+max-icon-size=48
+
+[urgency=high]
+border-color=#e78284
+default-timeout=0
+
+[mode=do-not-disturb]
+invisible=1
