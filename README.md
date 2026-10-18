@@ -28,6 +28,6 @@ secrets/          # sops-nix encrypted secrets
 ## Stack
 
 - **My text editor of choice:** [Neovim](https://neovim.io) • [My Neovim configuration](https://github.com/yvnth/nvix)
-- **Window manager:** [Mango](https://mangowm.github.io/)
+- **Window manager:** [SomeWM](https://somewm.org/)
 - **Secure Boot:** [Lanzaboote](https://github.com/nix-community/lanzaboote)
 - **Secrets:** [sops-nix](https://github.com/Mic92/sops-nix)

@@ -34,27 +34,28 @@
 
       fonts = {
         monospace = {
-          package = pkgs.nerd-fonts.jetbrains-mono;
-          name = "JetBrainsMono Nerd Font";
+          package = pkgs.plemoljp-nf;
+          name = "PlemolJP Console NF";
         };
 
         sansSerif = {
-          package = pkgs.nerd-fonts.jetbrains-mono;
-          name = "JetBrainsMono Nerd Font";
+          package = pkgs.plemoljp-nf;
+          name = "PlemolJP Console NF";
         };
 
         serif = {
-          package = pkgs.nerd-fonts.jetbrains-mono;
-          name = "JetBrainsMono Nerd Font";
+          package = pkgs.plemoljp-nf;
+          name = "PlemolJP Console NF";
         };
 
         sizes = {
-          applications = 15;
-          terminal = 15;
-          desktop = 15;
-          popups = 15;
+          applications = 16;
+          terminal = 16;
+          desktop = 16;
+          popups = 16;
         };
       };
     };
+
   };
 }
