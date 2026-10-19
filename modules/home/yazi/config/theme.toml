@@ -45,7 +45,6 @@ preview = { fg = "#303446", bg = "#c6d0f5" }
 sep_left = { open = "█", close = "█" }
 sep_right = { open = "█", close = "█" }
 
-
 progress_label = { fg = "#ffffff", bold = true }
 progress_normal = { fg = "#a6d189", bg = "#51576d" }
 progress_error = { fg = "#e5c890", bg = "#e78284" }

@@ -27,7 +27,7 @@
       type = "github";
       owner = "nix-community";
       repo = "lanzaboote";
-      ref = "v1.1.0";
+      ref = "v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
