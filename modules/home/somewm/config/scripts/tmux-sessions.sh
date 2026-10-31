@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -eu
 
-TERMINAL="wezterm"
-
 sessions="$(tmux list-sessions -F '#S' 2>/dev/null || true)"
 
 if [ -z "${sessions}" ]; then
@@ -34,4 +32,4 @@ if [ -n "${client_tty}" ]; then
   exit 0
 fi
 
-exec "${TERMINAL}" start -- tmux attach-session -t "${chosen}"
+exec wezterm start -- tmux attach-session -t "${chosen}"

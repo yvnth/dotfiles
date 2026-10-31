@@ -30,8 +30,8 @@ beautiful.border_focus = "#f4b8e4"
 beautiful.border_marked = "#e5c890"
 beautiful.wibar_bg = "#292c3c"
 beautiful.wibar_fg = "#f4b8e4"
-beautiful.font = "PlemolJP Console NF 15"
-beautiful.taglist_font = "PlemolJP Console NF 15"
+beautiful.font = "JetBrainsMono Nerd Font 15"
+beautiful.taglist_font = "JetBrainsMono Nerd Font 15"
 beautiful.taglist_spacing = dpi(10)
 beautiful.taglist_bg_focus = "#f4b8e4"
 beautiful.taglist_fg_focus = "#232634"
@@ -810,4 +810,3 @@ end)
 client.connect_signal("mouse::enter", function(c)
   c:activate({ context = "mouse_enter", raise = false })
 end)
-

@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 {
   fonts.packages = with pkgs; [
-    lohit-fonts.tamil
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
@@ -28,6 +27,7 @@
     git
     grim
     jq
+    just
     kdePackages.kate
     libnotify
     libreoffice

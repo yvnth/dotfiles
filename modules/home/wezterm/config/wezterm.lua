@@ -4,11 +4,14 @@ local colors = require("colorscheme")
 return {
   term = "xterm-256color",
 
-  font = wezterm.font("PlemolJP Console NF", { weight = "Regular", }),
-  font_size = 22.0,
-  line_height = 1.00,
+  font = wezterm.font_with_fallback({
+    { family = "JetBrainsMono Nerd Font", weight = "Regular" },
+    { family = "Noto Sans Tamil" },
+    { family = "Noto Sans CJK JP" },
+  }),
 
-  harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+  font_size = 20.0,
+  line_height = 1.00,
 
   enable_tab_bar = false,
   window_close_confirmation = "NeverPrompt",
