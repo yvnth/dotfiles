@@ -1,8 +1,8 @@
 # Adding a new system-level module
 
-Each module lives as a `.nix` file under `modules/core/`.
+Each module lives in its own directory under [modules/system/](../system/).
 
-## 1. Create `modules/core/<name>.nix`
+## 1. Create `modules/system/<name>/default.nix`
 
 ```nix
 { lib, config, ... }:
@@ -14,12 +14,12 @@ Each module lives as a `.nix` file under `modules/core/`.
 }
 ```
 
-## 2. Add it to `modules/core/default.nix`
+## 2. Add it to [default.nix](./default.nix)
 
 ```nix
 imports = [
   # ...existing...
-  ./<name>.nix
+  ./<name>
 ];
 ```
 

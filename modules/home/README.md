@@ -1,6 +1,6 @@
 # Adding a new user-level module
 
-Each module lives in its own directory under `modules/home/`.
+Each module lives in its own directory under [modules/home/](../home/).
 
 ## 1. Create `modules/home/<name>/default.nix`
 
@@ -18,7 +18,7 @@ Each module lives in its own directory under `modules/home/`.
 }
 ```
 
-## 2. Add it to `modules/home/default.nix`
+## 2. Add it to [default.nix](./default.nix)
 
 ```nix
 imports = [

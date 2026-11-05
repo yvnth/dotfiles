@@ -9,7 +9,7 @@ See [Bootstrap](docs/BOOTSTRAP.md) for fresh install instructions.
 ```
 docs/             # reference documentation
 hosts/            # per-machine configuration
-modules/core/     # system-level modules
+modules/system/   # system-level modules
 modules/home/     # home-manager modules
 pkgs/             # custom packages
 secrets/          # sops-nix encrypted secrets
@@ -17,7 +17,7 @@ secrets/          # sops-nix encrypted secrets
 
 ## Documentation
 
-- [Adding a core module](modules/core/README.md)
+- [Adding a system module](modules/system/README.md)
 - [Adding a home module](modules/home/README.md)
 - [Adding a new host](docs/NEW-HOST.md)
 - [Adding a new user](docs/NEW-USER.md)
@@ -28,6 +28,6 @@ secrets/          # sops-nix encrypted secrets
 ## Stack
 
 - **My text editor of choice:** [Neovim](https://neovim.io) • [My Neovim configuration](https://github.com/yvnth/nvix)
-- **Window manager:** [Mango](https://mangowm.github.io/)
+- **Window manager:** [Hyprland](https://hypr.land/)
 - **Secure Boot:** [Lanzaboote](https://github.com/nix-community/lanzaboote)
 - **Secrets:** [sops-nix](https://github.com/Mic92/sops-nix)

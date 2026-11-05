@@ -5,12 +5,11 @@
   "modules-left": [
     "clock#time",
     "clock#date",
-    "memory",
-    "cpu"
+    "cpu",
+    "memory"
   ],
   "modules-center": [
-    "mango/workspaces",
-    "mango/layout"
+    "hyprland/workspaces"
   ],
   "modules-right": [
     "battery",
@@ -20,27 +19,23 @@
     "custom/notifications",
     "tray"
   ],
-  "mango/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
-    "hide-empty": true,
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十"
+    },
+    "all-outputs": true,
+    "show-special": false,
     "on-click": "activate"
-  },
-  "mango/layout": {
-    "format": "{}",
-    "format-CT": "center_tile",
-    "format-K": "deck",
-    "format-DW": "dwindle",
-    "format-F": "fair",
-    "format-G": "grid",
-    "format-M": "monocle",
-    "format-RT": "right_tile",
-    "format-S": "scroller",
-    "format-T": "tile",
-    "format-VK": "vertical_deck",
-    "format-VF": "vertical_fair",
-    "format-VG": "vertical_grid",
-    "format-VS": "vertical_scroller",
-    "format-VT": "vertical_tile"
   },
   "network": {
     "interval": 5,

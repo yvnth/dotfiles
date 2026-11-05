@@ -18,7 +18,7 @@ users.users.<username> = {
 
 ## 2. Create Home Config
 
-Create `hosts/<hostname>/home.nix` for the user, using `hosts/satella/home.nix` as a reference:
+Create `hosts/<hostname>/home.nix` for the user, using [home.nix](../hosts/satella/home.nix) as a reference:
 
 ```nix
 { ... }:
@@ -38,7 +38,7 @@ Create `hosts/<hostname>/home.nix` for the user, using `hosts/satella/home.nix` 
 
 ## 3. Add to Home Manager in Flake
 
-Add the user under `home-manager.users` in `flake.nix`:
+Add the user under `home-manager.users` in [flake.nix](../flake.nix):
 
 ```nix
 home-manager.users.<username> = {
@@ -62,11 +62,11 @@ Add secrets if needed:
 sops secrets/<hostname>/<username>/<name>.yaml
 ```
 
-Reference them in `modules/core/sops.nix`:
+Reference them in [sops.nix](../modules/system/sops/default.nix):
 
 ```nix
 sops.secrets.<name> = {
-  sopsFile = ../../secrets/<hostname>/<username>/<name>.yaml;
+  sopsFile = ../../../secrets/<hostname>/<username>/<name>.yaml;
   key = "<key>";
   path = "/home/<username>/path/to/secret";
   owner = "<username>";

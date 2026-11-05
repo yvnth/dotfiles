@@ -1,3 +1,5 @@
+#:schema https://yazi-rs.github.io/schemas/theme.json
+
 [app]
 overall = { bg = "#303446" }
 
@@ -24,6 +26,8 @@ syntect_theme = "~/.config/yazi/Catppuccin-frappe.tmTheme"
 [tabs]
 active = { fg = "#303446", bg = "#c6d0f5", bold = true }
 inactive = { fg = "#c6d0f5", bg = "#51576d" }
+sep_inner = { open = "█", close = "█" }
+sep_outer = { open = "", close = "" }
 
 [mode]
 normal_main = { fg = "#303446", bg = "#f4b8e4", bold = true }
@@ -44,7 +48,6 @@ preview = { fg = "#303446", bg = "#c6d0f5" }
 [status]
 sep_left = { open = "█", close = "█" }
 sep_right = { open = "█", close = "█" }
-
 
 progress_label = { fg = "#ffffff", bold = true }
 progress_normal = { fg = "#a6d189", bg = "#51576d" }
@@ -105,28 +108,21 @@ title_error = { fg = "#e78284" }
 
 [filetype]
 rules = [
-  # Media
   { mime = "image/*", fg = "#e5c890" },
   { mime = "{audio,video}/*", fg = "#f4b8e4" },
 
-  # Archives
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#e78284" },
 
-  # Documents
   { mime = "application/{pdf,doc,rtf}", fg = "#99d1db" },
 
-  # Virtual file system
   { mime = "vfs/{absent,stale}", fg = "#51576d" },
 
-  # Special file
   { url = "*", is = "orphan", bg = "#e78284" },
   { url = "*", is = "exec", fg = "#a6d189" },
 
-  # Dummy file
   { url = "*", is = "dummy", bg = "#e78284" },
   { url = "*/", is = "dummy", bg = "#e78284" },
 
-  # Fallback
   { url = "*/", fg = "#f4b8e4" },
 ]
 
@@ -154,7 +150,6 @@ dirs = [
   { name = "Videos", text = "", fg = "#f4b8e4" },
 ]
 conds = [
-  # Special files
   { if = "orphan", text = "", fg = "#c6d0f5" },
   { if = "link", text = "", fg = "#a5adce" },
   { if = "block", text = "", fg = "#e5c890" },
@@ -164,7 +159,6 @@ conds = [
   { if = "sticky", text = "", fg = "#e5c890" },
   { if = "dummy", text = "", fg = "#e78284" },
 
-  # Fallback
   { if = "dir", text = "", fg = "#f4b8e4" },
   { if = "exec", text = "", fg = "#a6d189" },
   { if = "!dir", text = "", fg = "#c6d0f5" },

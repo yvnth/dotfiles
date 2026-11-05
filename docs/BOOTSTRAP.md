@@ -1,11 +1,11 @@
 # Bootstrap process
 
-## 1. Install Git
+## 1. Enter nix-shell
 
-A fresh NixOS install won't have `git`, so enter a nix shell with it:
+Enter a temporary shell with the [additional packages](../shell.nix)
 
 ```bash
-nix-shell -p git
+nix-shell
 ```
 
 ## 2. Clone and Partition with Disko
@@ -16,8 +16,6 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
   --mode destroy,format,mount \
   ~/dotfiles/hosts/<hostname>/disko.nix
 ```
-
-Note: Optionally, enter a temporary shell with the [additional packages](../shell.nix) using `nix-shell` from the repository root if they are needed during the installation process.
 
 ## 3. Inject Hardware Config
 

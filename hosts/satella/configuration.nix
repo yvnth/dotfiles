@@ -1,10 +1,11 @@
 { pkgs, ... }:
+
 {
   imports = [
     ./disko.nix
     ./hardware-configuration.nix
     ./packages.nix
-    ../../modules/core
+    ../../modules/system
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -39,12 +40,13 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   programs = {
-    mango.enable = true;
-    xwayland.enable = true;
     zsh.enable = true;
-  };
 
-  security.pam.services.swaylock = { };
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+  };
 
   services.displayManager.ly = {
     enable = true;
@@ -72,10 +74,18 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-wlr
-      xdg-desktop-portal-gtk
+    xdgOpenUsePortal = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
     ];
+    config = {
+      common.default = [ "gtk" ];
+      hyprland.default = [
+        "hyprland"
+        "gtk"
+      ];
+    };
   };
 
   system.stateVersion = "25.11";

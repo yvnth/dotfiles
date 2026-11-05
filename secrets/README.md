@@ -37,7 +37,7 @@ sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d secrets/<path>/<
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops secrets/<path>/<to>/<key>.yaml
 ```
 
-### 2. Reference it in `modules/core/sops.nix`
+### 2. Reference it in [sops/default.nix](../modules/system/sops/default.nix)
 
 ```nix
 sops.secrets.<name> = {
@@ -80,7 +80,7 @@ sudo chown root:root /var/lib/sops-nix/key.txt
 sudo age-keygen -y /var/lib/sops-nix/key.txt
 ```
 
-### 3. Add the public key to `.sops.yaml`
+### 3. Add the public key to [.sops.yaml](../.sops.yaml)
 
 ```yaml
 keys:
@@ -114,7 +114,7 @@ sudo age-keygen -o /var/lib/sops-nix/key.txt.new
 sudo age-keygen -y /var/lib/sops-nix/key.txt.new
 ```
 
-### 3. Add the new public key to `.sops.yaml` while keeping the old one
+### 3. Add the new public key to [.sops.yaml](../.sops.yaml) while keeping the old one
 
 ```yaml
 keys:
@@ -148,7 +148,7 @@ sudo chown root:root /var/lib/sops-nix/key.txt
 sudo -E env SOPS_AGE_KEY_FILE=/var/lib/sops-nix/key.txt sops -d secrets/<path>/<to>/<key>.yaml
 ```
 
-### 7. Remove the old key from `.sops.yaml` and re-encrypt one final time
+### 7. Remove the old key from [.sops.yaml](../.sops.yaml) and re-encrypt one final time
 
 ```yaml
 keys:

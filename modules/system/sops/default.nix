@@ -6,7 +6,7 @@
     sops.age.keyFile = "/var/lib/sops-nix/key.txt";
 
     sops.secrets.ssh_private_key = {
-      sopsFile = ../../secrets/satella/yvnth/ssh.yaml;
+      sopsFile = ../../../secrets/satella/yvnth/ssh.yaml;
       key = "private_key";
       path = "/home/yvnth/.ssh/id_ed25519";
       owner = "yvnth";
@@ -14,7 +14,7 @@
     };
 
     sops.secrets.gpg_private_key = {
-      sopsFile = ../../secrets/common/gpg.yaml;
+      sopsFile = ../../../secrets/common/gpg.yaml;
       key = "private_key";
       path = "/home/yvnth/.gnupg/secret-key.asc";
       owner = "yvnth";
@@ -22,7 +22,7 @@
     };
 
     sops.secrets.gpg_owner_trust = {
-      sopsFile = ../../secrets/common/gpg.yaml;
+      sopsFile = ../../../secrets/common/gpg.yaml;
       key = "owner_trust";
       path = "/home/yvnth/.gnupg/ownertrust.txt";
       owner = "yvnth";

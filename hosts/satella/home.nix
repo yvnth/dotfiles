@@ -1,4 +1,5 @@
 { ... }:
+
 {
   imports = [ ../../modules/home ];
 
@@ -12,10 +13,9 @@
     btop.enable = true;
     fastfetch.enable = true;
     git.enable = true;
-    java.enable = true;
+    hypr.enable = true;
     lazydocker.enable = true;
     lazygit.enable = true;
-    mango.enable = true;
     miru.enable = true;
     nix-search.enable = true;
     rofi.enable = true;

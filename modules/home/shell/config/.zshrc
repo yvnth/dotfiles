@@ -78,9 +78,20 @@ export MANPAGER="nvim +Man!"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
+export LEDGER_FILE="$HOME/Documents/finance/.hledger.journal"
+
 source ~/.config/shell/aliases
 
 eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 pokego --random 1-8
+
+function yazi() {
+  local tmp cwd
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+  command rm -f -- "$tmp"
+}

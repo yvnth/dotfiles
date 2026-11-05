@@ -27,14 +27,7 @@
       type = "github";
       owner = "nix-community";
       repo = "lanzaboote";
-      ref = "v1.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    mangowm = {
-      type = "github";
-      owner = "mangowm";
-      repo = "mango";
+      ref = "v1.2.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -79,13 +72,6 @@
       repo = "stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    waybar = {
-      type = "github";
-      owner = "Alexays";
-      repo = "Waybar";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -94,14 +80,12 @@
       fast-nix-gc,
       home-manager,
       lanzaboote,
-      mangowm,
       nix-flatpak,
       nixpkgs,
       nvix,
       sops-nix,
       spicetify-nix,
       stylix,
-      waybar,
       ...
     }@inputs:
     let
@@ -121,28 +105,9 @@
           fast-nix-gc.nixosModules.default
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
-          mangowm.nixosModules.mango
           nix-flatpak.nixosModules.nix-flatpak
           sops-nix.nixosModules.sops
           stylix.nixosModules.stylix
-
-          {
-            nixpkgs.overlays = [
-              waybar.overlays.default
-
-              (final: prev: {
-                xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (_: {
-                  version = "0.7.0";
-                  src = prev.fetchFromGitHub {
-                    owner = "emersion";
-                    repo = "xdg-desktop-portal-wlr";
-                    rev = "776113a4f014639c29d8de8fcb513493ef7b491f";
-                    hash = "sha256-EwBHkXFEPAEgVUGC/0e2Bae/rV5lec1ttfbJ5ce9cKw=";
-                  };
-                });
-              })
-            ];
-          }
 
           {
             home-manager = {
@@ -152,7 +117,6 @@
               };
               useGlobalPkgs = true;
               useUserPackages = true;
-
               users.yvnth = {
                 imports = [
                   ./hosts/satella/home.nix

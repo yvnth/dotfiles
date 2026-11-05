@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 {
   fonts.packages = with pkgs; [
-    lohit-fonts.tamil
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
@@ -28,7 +27,7 @@
     git
     grim
     jq
-    jujutsu
+    just
     kdePackages.kate
     libnotify
     libreoffice
@@ -39,20 +38,17 @@
     nemo
     networkmanagerapplet
     nh
-    nix-output-monitor
     nsxiv
     nwg-look
     papirus-icon-theme
     pass
     pavucontrol
     pokego
-    postman
     ripgrep
     rofimoji
     satty
     slurp
     swaybg
-    vlc
     vscode
     waytrogen
     wget

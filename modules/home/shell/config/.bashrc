@@ -12,6 +12,8 @@ export MANPAGER="nvim +Man!"
 
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 
+export LEDGER_FILE="$HOME/Documents/finance/.hledger.journal"
+
 HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/bash/history"
 mkdir -p "$(dirname "$HISTFILE")"
 
@@ -28,3 +30,12 @@ eval "$(zoxide init bash --cmd cd)"
 eval "$(direnv hook bash)"
 
 pokego --random 1-8
+
+function yazi() {
+  local tmp cwd
+  tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd <"$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+  command rm -f -- "$tmp"
+}

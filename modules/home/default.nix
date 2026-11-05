@@ -1,13 +1,14 @@
 { ... }:
+
 {
   imports = [
     ./btop
     ./fastfetch
     ./git
+    ./hypr
     ./java
     ./lazydocker
     ./lazygit
-    ./mango
     ./miru
     ./nix-search
     ./rofi
