@@ -39,22 +39,6 @@ vol-mute)
   fi
   ;;
 
-mic-mute)
-  wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-
-  if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q MUTED; then
-    notify-send \
-      -h string:x-canonical-private-synchronous:mic \
-      "󰍭 Mic" \
-      "Muted"
-  else
-    notify-send \
-      -h string:x-canonical-private-synchronous:mic \
-      "󰍬 Mic" \
-      "Unmuted"
-  fi
-  ;;
-
 bright-up)
   brightnessctl set +5%
 
@@ -78,7 +62,7 @@ bright-down)
   ;;
 
 *)
-  echo "Usage: $0 {vol-up|vol-down|vol-mute|mic-mute|bright-up|bright-down}"
+  echo "Usage: $0 {vol-up|vol-down|vol-mute|bright-up|bright-down}"
   exit 1
   ;;
 esac

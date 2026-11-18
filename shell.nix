@@ -9,6 +9,7 @@ pkgs.mkShell {
     age
     gh
     git
+    jq
     just
     sops
     ssh-to-age

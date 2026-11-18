@@ -59,7 +59,7 @@
 
   users.users.yvnth = {
     isNormalUser = true;
-    description = "yvnth";
+    description = "Yashwanth Prasannakumar";
     shell = pkgs.zsh;
     initialPassword = "changeme";
     extraGroups = [

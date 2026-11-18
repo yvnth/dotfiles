@@ -80,7 +80,7 @@ hl.config({
 	decoration = {
 		active_opacity = 1.00,
 		inactive_opacity = 1.00,
-		fullscreen_opacity = 1.0,
+		fullscreen_opacity = 1.00,
 
 		shadow = {
 			enabled = false,
@@ -129,6 +129,14 @@ hl.monitor({
 	scale = 1,
 })
 
+hl.monitor({
+	output = "HDMI-A-1",
+	mode = "1920x1080@120",
+	position = "0x0",
+	scale = 1,
+	mirror = "eDP-1",
+})
+
 hl.bind(super .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(super .. " + Q", hl.dsp.window.close())
 hl.bind(super .. " + B", hl.dsp.exec_cmd(browser))
@@ -151,19 +159,19 @@ hl.bind(
 		action = "toggle",
 	})
 )
-hl.bind(super .. " + P", hl.dsp.exec_cmd("rofi-pass"))
 hl.bind(super .. " + Z", hl.dsp.exec_cmd("miructl toggle"))
 hl.bind(super .. " + " .. meta .. " + Z", hl.dsp.exec_cmd("miructl loupe"))
-hl.bind(super .. " + " .. meta .. " + T", hl.dsp.exec_cmd(scripts .. "/tmux-sessions.sh"))
+hl.bind(meta .. " + P", hl.dsp.exec_cmd("rofi-pass"))
+hl.bind(meta .. " + T", hl.dsp.exec_cmd(scripts .. "/tmux-sessions.sh"))
 
 hl.bind(
-	"PRINT",
+	meta .. " + S",
 	hl.dsp.exec_cmd(
 		"sh -c 'grim -t ppm -g \"$(slurp)\" - | satty --filename - --fullscreen --copy-command wl-copy --output-filename ~/Pictures/screenshots/$(date +%Y-%m-%d_%H-%M-%S).png'"
 	)
 )
 hl.bind(
-	shift .. " + PRINT",
+	meta .. " + " .. shift .. " + S",
 	hl.dsp.exec_cmd(
 		'sh -c \'if pgrep -x wl-screenrec > /dev/null; then pkill -SIGINT wl-screenrec && notify-send -u normal -t 4000 "🎬 Recording Saved" "✅ Video written to ~/Videos — ready to use!"; else FILE=~/Videos/$(date +%Y-%m-%d_%H-%M-%S).mp4; REGION=$(slurp) && wl-screenrec --geometry "$REGION" -f "$FILE" & notify-send -u normal -t 3000 "🔴 Recording in Progress" "🎯 Region locked — press Shift+Print again to stop"; fi\''
 	)
@@ -201,25 +209,17 @@ hl.bind(super .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
 hl.bind(super .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
 hl.bind(super .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 
+hl.bind(meta .. " + V", hl.dsp.exec_cmd(scripts .. "/media-keys.sh vol-up"), { locked = true, repeating = true })
 hl.bind(
-	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd(scripts .. "/media-keys.sh vol-up"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86AudioLowerVolume",
+	meta .. " + " .. shift .. " + V",
 	hl.dsp.exec_cmd(scripts .. "/media-keys.sh vol-down"),
 	{ locked = true, repeating = true }
 )
-hl.bind("XF86AudioMute", hl.dsp.exec_cmd(scripts .. "/media-keys.sh vol-mute"), { locked = true })
-hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd(scripts .. "/media-keys.sh mic-mute"), { locked = true })
+hl.bind(meta .. "+" .. ctrl .. "+V", hl.dsp.exec_cmd(scripts .. "/media-keys.sh vol-mute"), { locked = true })
+
+hl.bind(meta .. " + B", hl.dsp.exec_cmd(scripts .. "/media-keys.sh bright-up"), { locked = true, repeating = true })
 hl.bind(
-	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd(scripts .. "/media-keys.sh bright-up"),
-	{ locked = true, repeating = true }
-)
-hl.bind(
-	"XF86MonBrightnessDown",
+	meta .. " + " .. shift .. " + B",
 	hl.dsp.exec_cmd(scripts .. "/media-keys.sh bright-down"),
 	{ locked = true, repeating = true }
 )

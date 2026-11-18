@@ -29,5 +29,11 @@
         };
       };
     };
+
+    programs.ssh.extraConfig = ''
+      Host echidna
+        HostName 10.219.18.40
+        User yvnth
+    '';
   };
 }
